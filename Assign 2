@@ -1,0 +1,25 @@
+# Program Name: Assignment2.py
+# Course: IT3883/Section W01
+# Student Name: Jeffrey Brown
+# Assignment Number: Lab#2
+# Due Date: 9/19/2025
+# Purpose: This program reads student names and their scores from an input,
+#          calculates the final average for each student, and prints the results
+#          in descending order by grade.
+# Resources: Class notes
+# Ask user for input
+data = []
+
+n = int(input("How many people do you want to enter? "))
+
+for i in range(n):
+    line = input(f"Enter the name followed by 6 numbers separated by spaces for each person {i+1}: ")
+    parts = line.split()
+    name = parts[0]
+    numbers = list(map(int, parts[1:]))
+    data.append([name] + numbers)
+
+# Print the data to verify
+print("\nYou entered:")
+for row in data:
+    print(row)
