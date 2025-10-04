@@ -1,0 +1,43 @@
+# Program Name: Assignment3.py
+# Course: IT3883/Section W01
+# Student Name: Jeffrey Brown
+# Assignment Number: Assignment 3
+# Due Date: 10/03/2025
+# Purpose: The program converts miles per gallon to kilometers per liter using a simple GUI. The result updates automatically when the user types.
+# Resources Used: Python tkinter and D2L class resources.
+
+import tkinter as tk
+
+# The conversion rate from miles per gallon to kilometers per liter
+CONVERSION = 0.425143707
+
+# Function to do the conversion
+def convert(*args):   # *args lets it work with or without an event
+    try:
+        mpg = float(mpg_entry.get())      # get the number typed
+        kpl = mpg * CONVERSION
+        result_label.config(text=str(round(kpl, 2)))  # result
+    except:
+        result_label.config(text="")      # clear if bad input
+
+window = tk.Tk()
+window.title("MPG to KM/L Converter")
+
+# Label
+mpg_label = tk.Label(window, text="Miles per Gallon (MPG):")
+mpg_label.pack()
+
+mpg_entry = tk.Entry(window)
+mpg_entry.pack()
+mpg_entry.bind("<KeyRelease>", convert)   # run convert when typing
+
+# Label
+kpl_label = tk.Label(window, text="Kilometers per Liter (KM/L):")
+kpl_label.pack()
+
+# Show result
+result_label = tk.Label(window, text="")
+result_label.pack()
+
+# Run the program
+window.mainloop()
