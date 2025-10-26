@@ -1,0 +1,42 @@
+# Program Name: ProgramA.py
+# Course: IT3883/Section W01
+# Student Name: Jeffrey Brown
+# Assignment Number: Lab4
+# Due Date: 10/26/2025
+# Purpose: This program listens for a string from Program A, converts it to uppercase, and sends it back.
+# Resources: Python socket documentation, Python tutorials
+
+import socket
+
+# Defines the server IP and port
+SERVER_IP = '127.0.0.1'
+SERVER_PORT = 69420
+
+# Creats TCP socket
+server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
+# Bind socket
+server_socket.bind((SERVER_IP, SERVER_PORT))
+
+# Listen
+server_socket.listen(1)
+print(f"Server listening on {SERVER_IP}:{SERVER_PORT}")
+
+# Accept
+client_conn, client_addr = server_socket.accept()
+print(f"Connected to {client_addr}")
+
+# Receive data
+received_data = client_conn.recv(1024).decode()
+print(f"Received from client: {received_data}")
+
+# Convert string to uppercase
+response_data = received_data.upper()
+
+# Send string back to client
+client_conn.send(response_data.encode())
+print(f"Sent to client: {response_data}")
+
+# Close
+client_conn.close()
+server_socket.close()
