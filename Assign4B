@@ -1,0 +1,34 @@
+# Program Name: ProgramA.py
+# Course: IT3883/Section W01
+# Student Name: Jeffrey Brown
+# Assignment Number: Lab4
+# Due Date: 10/26/2025
+# Purpose: This program prompts the user for a string, sends it to Program B, and prints the response.
+# Resources: Python socket documentation, Python tutorials
+
+import socket
+
+# Define server IP and port
+SERVER_IP = '127.0.0.1'
+SERVER_PORT = 69420
+
+# Create TCP socket
+client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
+# Connect to server
+client_socket.connect((SERVER_IP, SERVER_PORT))
+
+# Prompt for input
+user_input = input("Enter a string to send to the server: ")
+
+# Send string to the server
+client_socket.send(user_input.encode())
+
+# Receive response
+response = client_socket.recv(1024).decode()
+
+# Print
+print(f"Response from server: {response}")
+
+# Close
+client_socket.close()
