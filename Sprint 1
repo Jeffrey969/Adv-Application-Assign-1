@@ -1,0 +1,36 @@
+# Sprint 1 Implementation
+# This program reads a sentence about coins and converts it to a dollar value.
+
+# How much each coin is worth
+values = {
+    "penny": 0.01,
+    "nickel": 0.05,
+    "dime": 0.10,
+    "quarter": 0.25
+}
+
+def money_from_sentence(text):
+    # Split the sentence
+    groups = text.split("and")
+    total_amount = 0
+
+    for g in groups:
+        g = g.strip()  # remove spaces
+        parts = g.split()
+
+        # Amount
+        number = int(parts[0])
+
+        # Name
+        coin = parts[1].lower()
+
+        # Total
+        total_amount += number * values[coin]
+
+    # Round to 2 decimals
+    return round(total_amount, 2)
+
+
+print("Coin Converter")
+user_text = input("Type something ")
+answer = money_from_sentence(user_text)
